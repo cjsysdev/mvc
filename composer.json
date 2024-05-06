@@ -1,0 +1,8 @@
+{
+    "name": "cjsysdev/mvc",
+    "description": "na",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {}
+}
