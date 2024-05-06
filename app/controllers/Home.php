@@ -5,10 +5,9 @@ class Home extends Controller
     public function index($name = '')
     {
         $user = $this->model('User');
-        $user->name = $name;
 
-        var_dump($user->get());
+        $name = $user->get()['name'];
 
-        $this->view('home/index', ['name' => $user->name]);
+        $this->view('home/index', ['name' => $name]);
     }
 }
