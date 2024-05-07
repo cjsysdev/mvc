@@ -10,10 +10,10 @@ class Model
 
     protected $database = 'native_db';
 
-    protected $conn = '';
+    protected $db = '';
 
     public function __construct()
     {
-        $this->conn = new mysqli($this->servername, $this->user, $this->password, $this->database);
+        $this->db = new mysqli($this->servername, $this->user, $this->password, $this->database);
     }
 }
