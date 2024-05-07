@@ -77,4 +77,11 @@ class User extends Controller
     {
         $this->to();
     }
+
+    public function sample_json()
+    {
+        $data = ['data' => 'item'];
+
+        echo json_encode($data);
+    }
 }

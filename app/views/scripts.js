@@ -17,6 +17,7 @@ function toggleForms(showLoginForm) {
     regLinkId.style.color = "aqua";
   }
 }
+
 if (logLinkId) {
   logLinkId.addEventListener("click", (e) => {
     e.preventDefault();
@@ -38,9 +39,11 @@ function formdatas(elementId) {
   formData.forEach((value, key) => {
     dataObj[key] = value;
   });
+  
 
   return dataObj;
 }
+
 if (logFormId) {
   logFormId.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -80,7 +83,9 @@ function sendDataToServer(data, url) {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       const res = xhr.responseText;
       if (res === "success") {
-        window.location = "./user/dashboard";
+        window.location.assign("./user/dashboard");
+      } else {
+        alert(res);
       }
     }
   };
