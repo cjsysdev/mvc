@@ -46,7 +46,7 @@ logFormId.addEventListener("submit", (event) => {
   if (logData["password"] == "") {
     alert("Password Empty");
   } else {
-    sendDataToServer(logData, "controller/login.php");
+    sendDataToServer(logData, "./user/login");
   }
 });
 
@@ -60,7 +60,7 @@ regFormId.addEventListener("submit", (event) => {
     if (regData["password"] !== regData["confirm_password"]) {
       alert("Password doesn't match!");
     } else {
-      sendDataToServer(regData, "controller/register.php");
+      sendDataToServer(regData, "./user/register");
     }
   }
 });
@@ -73,23 +73,7 @@ function sendDataToServer(data, url) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       const res = xhr.responseText;
-      if (data["confirm_password"] == undefined) {
-        if (res == "user not found" || res == "Wrong password") {
-          const main = document.getElementById("main");
-          const inputs = main.getElementsByTagName("input");
-          for (let i = 0; i < inputs.length; i++) {
-            inputs[i].value = "";
-          }
-          alert("Invalid Credentials");
-        } else {
-          const main = document.getElementById("main");
-          main.innerHTML = res;
-        }
-      } else {
-        if (res == '1062') {
-          alert("Username Exist");
-        }
-      }
+      console.log(res);
     }
   };
 

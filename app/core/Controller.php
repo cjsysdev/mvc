@@ -2,6 +2,13 @@
 
 class Controller
 {
+
+    public function url($controller)
+    {
+        require_once '../app/controllers/' . $controller . '.php';
+        return new $controller();
+    }
+
     public function model($model)
     {
         require_once '../app/models/' . $model . '.php';
