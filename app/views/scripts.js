@@ -17,16 +17,19 @@ function toggleForms(showLoginForm) {
     regLinkId.style.color = "aqua";
   }
 }
+if (logLinkId) {
+  logLinkId.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleForms(true);
+  });
+}
 
-logLinkId.addEventListener("click", (e) => {
-  e.preventDefault();
-  toggleForms(true);
-});
-
-regLinkId.addEventListener("click", (e) => {
-  e.preventDefault();
-  toggleForms(false);
-});
+if (regFormId) {
+  regLinkId.addEventListener("click", (e) => {
+    e.preventDefault();
+    toggleForms(false);
+  });
+}
 
 function formdatas(elementId) {
   const formData = new FormData(elementId);
@@ -38,32 +41,35 @@ function formdatas(elementId) {
 
   return dataObj;
 }
+if (logFormId) {
+  logFormId.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const logData = formdatas(logFormId);
 
-logFormId.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const logData = formdatas(logFormId);
-
-  if (logData["password"] == "") {
-    alert("Password Empty");
-  } else {
-    sendDataToServer(logData, "./user/login");
-  }
-});
-
-regFormId.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const regData = formdatas(regFormId);
-
-  if (regData["password"] == "") {
-    alert("Password Empty");
-  } else {
-    if (regData["password"] !== regData["confirm_password"]) {
-      alert("Password doesn't match!");
+    if (logData["password"] == "") {
+      alert("Password Empty");
     } else {
-      sendDataToServer(regData, "./user/register");
+      sendDataToServer(logData, "./user/login");
     }
-  }
-});
+  });
+}
+
+if (regFormId) {
+  regFormId.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const regData = formdatas(regFormId);
+
+    if (regData["password"] == "") {
+      alert("Password Empty");
+    } else {
+      if (regData["password"] !== regData["confirm_password"]) {
+        alert("Password doesn't match!");
+      } else {
+        sendDataToServer(regData, "./user/register");
+      }
+    }
+  });
+}
 
 function sendDataToServer(data, url) {
   const xhr = new XMLHttpRequest();
