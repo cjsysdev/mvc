@@ -73,7 +73,9 @@ function sendDataToServer(data, url) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
       const res = xhr.responseText;
-      console.log(res);
+      if (res === "success") {
+        window.location = "./user/dashboard";
+      }
     }
   };
 

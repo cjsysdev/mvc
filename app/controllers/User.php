@@ -7,12 +7,28 @@ class User extends Controller
 
     public function __construct()
     {
+        session_start();
         $this->user_model = $this->model('User_model');
     }
 
     public function index()
     {
-        $this->view('home/home');
+        session_destroy();
+        $this->view('header');
+        $this->view('home');
+        $this->view('footer');
+    }
+
+
+    public function dashboard()
+    {
+        if (!$_SESSION['online']) {
+            $this->to();
+        }
+
+        $this->view('header');
+        $this->view('dashboard');
+        $this->view('footer');
     }
 
     public function login()
@@ -23,16 +39,21 @@ class User extends Controller
             if ($user !== null) {
 
                 if ($user['password'] == $_POST['password']) {
+
+                    $_SESSION['online'] = true;
+                    $_SESSION['userid'] = $user['id'];
+
                     echo 'success';
+                    exit();
                 } else {
-                    echo 'invalid credentials';
+                    echo 'invalid';
                 }
             } else {
                 echo "does not exist";
             }
         } else {
             echo http_response_code(405);
-            echo "Error";
+            echo "error";
         }
     }
 
@@ -42,13 +63,18 @@ class User extends Controller
             $user = $this->user_model->insert($_POST);
 
             if ($user === true) {
-                echo "Registered Successfuly";
+                echo "success";
             } else {
                 echo $user;
             }
         } else {
             echo http_response_code(405);
-            echo "Error";
+            echo "error";
         }
+    }
+
+    public function logout()
+    {
+        $this->to();
     }
 }
