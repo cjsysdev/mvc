@@ -4,31 +4,15 @@ const regLinkId = document.getElementById("registerLink");
 const logFormId = document.getElementById("loginForm");
 const regFormId = document.getElementById("registerForm");
 
-function toggleForms(showLoginForm) {
-  if (showLoginForm) {
-    logFormId.hidden = false;
-    regFormId.hidden = true;
-    logLinkId.style.color = "aqua";
-    regLinkId.style.color = "aliceblue";
-  } else {
-    logFormId.hidden = true;
-    regFormId.hidden = false;
-    logLinkId.style.color = "aliceblue";
-    regLinkId.style.color = "aqua";
-  }
-}
-
 if (logLinkId) {
   logLinkId.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleForms(true);
+    route(e, "content");
   });
 }
 
-if (regFormId) {
+if (regLinkId) {
   regLinkId.addEventListener("click", (e) => {
-    e.preventDefault();
-    toggleForms(false);
+    route(e, "content");
   });
 }
 
@@ -39,9 +23,19 @@ function formdatas(elementId) {
   formData.forEach((value, key) => {
     dataObj[key] = value;
   });
-  
 
   return dataObj;
+}
+
+function login(event) {
+  event.preventDefault();
+  const logData = formdatas(logFormId);
+
+  if (logData["password"] == "") {
+    alert("Password Empty");
+  } else {
+    sendDataToServer(logData, "./login");
+  }
 }
 
 if (logFormId) {
@@ -52,7 +46,7 @@ if (logFormId) {
     if (logData["password"] == "") {
       alert("Password Empty");
     } else {
-      sendDataToServer(logData, "./user/login");
+      sendDataToServer(logData, "./login");
     }
   });
 }

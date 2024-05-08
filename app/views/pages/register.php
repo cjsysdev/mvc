@@ -1,4 +1,4 @@
-<form id="registerForm" hidden>
+<form id="registerForm">
     <input name="name" type="text" placeholder="name" />
     <input name="username" type="text" placeholder="username" />
     <input name="password" type="password" placeholder="password" />

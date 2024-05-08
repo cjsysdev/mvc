@@ -15,7 +15,15 @@ class User extends Controller
     {
         session_destroy();
         $this->view('header');
+        $this->view('pages/nav-menu');
         $this->view('home');
+        $this->view('footer');
+    }
+
+    public function about()
+    {
+        $this->view('header');
+        $this->view('pages/about');
         $this->view('footer');
     }
 
@@ -27,8 +35,13 @@ class User extends Controller
         }
 
         $this->view('header');
-        $this->view('dashboard');
+        $this->view('pages/dashboard');
         $this->view('footer');
+    }
+
+    public function login_page()
+    {
+        $this->view('pages/login');
     }
 
     public function login()
@@ -55,6 +68,11 @@ class User extends Controller
             echo http_response_code(405);
             echo "error";
         }
+    }
+
+    public function register_page()
+    {
+        $this->view('pages/register');
     }
 
     public function register()
