@@ -4,7 +4,7 @@
 
 <?= var_dump($_SESSION) ?>
 
-<a href="<?= $this->base_url() ?>/user/dashboard" onclick="route(event)">Home</a>
-<a href="<?= $this->base_url() ?>/user/about" onclick="route(event)">About</a>
+<a id="dashboardLink" href="<?= $this->base_url() ?>/user/dashboard" onclick="route(event,'main')">Home</a>
+<a id="aboutLink" href="<?= $this->base_url() ?>/user/about" onclick="route(event,'main')">About</a>
 
 <a href="<?= $this->base_url() ?>/user/logout">Logout</a>

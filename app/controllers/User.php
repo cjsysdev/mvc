@@ -27,7 +27,6 @@ class User extends Controller
         $this->view('footer');
     }
 
-
     public function dashboard()
     {
         if (!$_SESSION['online']) {
@@ -37,11 +36,6 @@ class User extends Controller
         $this->view('header');
         $this->view('pages/dashboard');
         $this->view('footer');
-    }
-
-    public function login_page()
-    {
-        $this->view('pages/login');
     }
 
     public function login()
@@ -68,11 +62,6 @@ class User extends Controller
             echo http_response_code(405);
             echo "error";
         }
-    }
-
-    public function register_page()
-    {
-        $this->view('pages/register');
     }
 
     public function register()

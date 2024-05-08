@@ -6,17 +6,30 @@ const route = (event, id) => {
 };
 
 const routes = [
-  "/mvc/public/user/login_page",
-  "/mvc/public/user/register_page",
-  "/mvc/public/user/about",
-  "/mvc/public/user/dashboard",
-  "/mvc/public/user/logout",
+  {
+    url: "/mvc/public/login",
+    path: "/mvc/app/views/pages/login.php",
+  },
+  {
+    url: "/mvc/public/register",
+    path: "/mvc/app/views/pages/register.php",
+  },
+  {
+    url: "/mvc/public/user/dashboard",
+    path: "/mvc/public/user/dashboard",
+  },
+  {
+    url: "/mvc/public/user/about",
+    path: "/mvc/public/user/about",
+  },
 ];
 
 async function handleLocation(id) {
   const path = window.location.pathname;
-  if (routes.includes(path)) {
-    const html = await fetch(path).then((data) => data.text());
+  const route = routes.find((route) => route.url === path);
+
+  if (route) {
+    const html = await fetch(route.path).then((data) => data.text());
     const main = document.getElementById(id);
     main.innerHTML = html;
   } else {
