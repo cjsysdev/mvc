@@ -4,7 +4,10 @@
 
 <?= var_dump($_SESSION) ?>
 
-<a id="logout" href="./logout">Logout</a>
+<a href="/mvc/public/user/dashboard" onclick="route(event)">Home</a>
+<a href="/mvc/public/about" onclick="route(event)">About</a>
+
+<a href="/mvc/public/user/logout">Logout</a>
 
 <script>
     fetch('./sample_json')

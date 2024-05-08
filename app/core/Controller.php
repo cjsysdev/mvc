@@ -2,7 +2,6 @@
 
 class Controller
 {
-
     public function url($controller)
     {
         require_once '../app/controllers/' . $controller . '.php';
@@ -20,10 +19,8 @@ class Controller
         require_once '../app/views/' . $view . '.php';
     }
 
-    public static function to($url = '/', $statusCode = 302)
+    public function base_url()
     {
-        /* This code snippet is extracting the base URL removing index.php */
-
         $baseUrl = explode(
             '/',
             filter_var(
@@ -33,9 +30,13 @@ class Controller
         );
 
         unset($baseUrl[3]);
-        $baseUrl = implode('/', $baseUrl);
 
-        header('Location: ' . $baseUrl . $url, true, $statusCode);
+        return implode('/', $baseUrl);
+    }
+
+    public function to($url = '/', $statusCode = 302)
+    {
+        header('Location: ' . $this->base_url() . $url, true, $statusCode);
         exit();
     }
 }
