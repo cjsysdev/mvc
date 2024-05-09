@@ -7,6 +7,10 @@ const route = (event, id) => {
 
 const routes = [
   {
+    url: "/mvc/public/",
+    path: "/mvc/public/",
+  },
+  {
     url: "/mvc/public/login",
     path: "/mvc/app/views/pages/login.php",
   },
@@ -31,7 +35,9 @@ async function handleLocation(id) {
   if (route) {
     const html = await fetch(route.path).then((data) => data.text());
     const main = document.getElementById(id);
-    main.innerHTML = html;
+    if (main) {
+      main.innerHTML = html;
+    }
   } else {
     console.error("Route not found:", path);
   }
