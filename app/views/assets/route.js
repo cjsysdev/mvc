@@ -23,8 +23,8 @@ const routes = [
     path: "/mvc/public/user/dashboard",
   },
   {
-    url: "/mvc/public/user/about",
-    path: "/mvc/public/user/about",
+    url: "/mvc/public/about",
+    path: "/mvc/app/views/pages/about.php",
   },
 ];
 
@@ -45,5 +45,3 @@ async function handleLocation(id) {
 
 window.onpopstate = handleLocation;
 window.route = route;
-
-handleLocation();

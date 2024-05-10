@@ -13,17 +13,9 @@ class User extends Controller
 
     public function index()
     {
-        session_destroy();
         $this->view('header');
         $this->view('pages/nav-menu');
         $this->view('home');
-        $this->view('footer');
-    }
-
-    public function about()
-    {
-        $this->view('header');
-        $this->view('pages/about');
         $this->view('footer');
     }
 
@@ -34,6 +26,7 @@ class User extends Controller
         }
 
         $this->view('header');
+        $this->view('pages/online-menu');
         $this->view('pages/dashboard');
         $this->view('footer');
     }
@@ -82,6 +75,7 @@ class User extends Controller
 
     public function logout()
     {
+        session_destroy();
         $this->to();
     }
 
